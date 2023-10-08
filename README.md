@@ -1,26 +1,44 @@
 # TASK MANAGEMENT APPLICATION USING DJANGO REST FRAMEWORK AND REACT.JS
 
-The task management application is built using Django REST framework for the backend API and React.js for the frontend user interface.
+🚀 Welcome to the Task Management Application! This powerful tool combines Django REST framework for the backend API with React.js for the frontend user interface.
+
+## Screenshots
+
+📷 Here are some screenshots of the Task Management Application:
+
+### Task List Screen
+
+![Task List](path/to/screenshot1.png)
+
+Description of the task list screen.
+
+### Create Task Screen
+
+![Create Task](path/to/screenshot2.png)
+
+Description of the create task screen.
 
 ## Requirements
 
-- Python 3.9.6
-- Django 4.2.4
-- Django REST Framework 3.14.0
-- React.JS ^18.2.0
-- Chakra UI ^2.8.0
+✅ To run this application, ensure you have the following prerequisites:
+
+- Python 3.9.6 🐍
+- Django 4.2.4 🌐
+- Django REST Framework 3.14.0 📦
+- React.JS ^18.2.0 ⚛️
+- Chakra UI ^2.8.0 💅
 
 ## Usage
 
 1. Clone the repository:
 
-```
+```shell
 git clone https://github.com/SakshamTolani/taskux/
 ```
 
 2. Create a new branch:
 
-```
+```shell
 git checkout -b <branch_name>
 ```
 
@@ -42,7 +60,7 @@ python3 -m pip install -r requirements.txt
 
 4. Navigate to the backend directory:
 
-```
+```shell
 cd backend
 ```
 
@@ -67,7 +85,7 @@ python manage.py runserver
 
 ## API Endpoints
 
-The following RESTful API endpoints are available:
+🌐 Explore the following RESTful API endpoints:
 
 - GET `/api/tasks/`: Get all tasks
 - POST `/api/register/`: Signup a user
@@ -80,14 +98,14 @@ The following RESTful API endpoints are available:
 
 ## Swagger Documentation
 
-Swagger UI can be used to test and explore the API endpoints. It provides a user-friendly interface for interacting with the API.
+📖 Use Swagger UI to test and explore the API endpoints with ease. It provides a user-friendly interface for interacting with the API.
 
-- Local Swagger UI: [https://127.0.0.1:8000/api/schema/swagger-ui/](https://127.0.0.1:8000/api/schema/swagger-ui/)
-- Live Deployment Swagger UI: [https://taskux.pythonanywhere.com/api/schema/swagger-ui/](https://taskux.pythonanywhere.com/api/schema/swagger-ui/)
+- Local Swagger UI: [Swagger UI (Local)](https://127.0.0.1:8000/api/schema/swagger-ui/)
+- Live Deployment Swagger UI: [Swagger UI (Live Deployment)](https://taskux.pythonanywhere.com/api/schema/swagger-ui/)
 
 ### Authentication for SWAGGER
 
-Most of the API endpoints require authentication. Here are the steps to authorize yourself using the Swagger UI:
+🔐 Most API endpoints require authentication. Here's how to authorize yourself using the Swagger UI:
 
 1. Open the Swagger UI either locally or via the live deployment URL mentioned above.
 
@@ -113,9 +131,9 @@ Now, you can test the API endpoints by entering the required parameters for each
 
 ## Deployment on PythonAnywhere (with Database Setup)
 
-To deploy the project on PythonAnywhere, follow these steps:
+💼 Ready to deploy the project on PythonAnywhere? Follow these steps:
 
-1. Create a PythonAnywhere account if you don't have one already: [https://www.pythonanywhere.com/](https://www.pythonanywhere.com/)
+1. Create a PythonAnywhere account if you don't have one already: [PythonAnywhere Account](https://www.pythonanywhere.com/)
 
 2. Once you're logged in, go to the Dashboard and navigate to the "Consoles" tab.
 
@@ -190,7 +208,6 @@ python manage.py collectstatic --no-input
 For example, if your PythonAnywhere domain is `https://your_domain.pythonanywhere.com/`, you can access the Swagger UI at `https://your_domain.pythonanywhere.com/api/schema/swagger-ui/`.
 
 From the Swagger UI, you can explore all the available API endpoints, send requests, and test the functionality of the Task Management Application.
-
 
 Please replace `your_domain` with your actual PythonAnywhere domain wherever mentioned.
 
