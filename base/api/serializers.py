@@ -6,7 +6,7 @@ from base.models import Task
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields='__all__'
+        fields=['title','desc','due_date','priority','status']
 
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(read_only=True)
@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['id','email', 'first_name', 'password','name','isAdmin','username' ]
 
     def get_id(self, obj):
         return obj.id

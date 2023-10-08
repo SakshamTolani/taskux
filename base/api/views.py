@@ -9,6 +9,8 @@ from .serializers import TaskSerializer, UserSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
+from django.db.models import Q
+from drf_spectacular.utils import extend_schema
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -28,20 +30,27 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
+@extend_schema(request=UserSerializer)
 @api_view(["POST"])
 def registerUser(request):
     data = request.data
+    usernameExist = User.objects.filter(username__iexact=data['email']).exists()
+    if usernameExist:
+        message = {"detail": "User with this email already exists."}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
+    if data.get("name") is None:
+        data["name"]= data["first_name"]
     try:
         user = User.objects.create(
             first_name=data["name"],
             username=data["email"],
-            email="",
+            email=data["email"],
             password=make_password(data["password"]),
         )
         serializer = UserSerializer(user, many=False)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
     except Exception as e:
-        message = {"detail": "User with this email already exists."}
+        message = {"detail": "Some Eror Occured!"}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -57,29 +66,32 @@ def getRoutes(request):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def getTasks(request):
-    user = request.user
-    title_query = request.query_params.get("title")
-    desc_query = request.query_params.get("desc")
-    status_query = request.query_params.get("status")
-    priority_query = request.query_params.get("priority")
-    # tasks = user.task_set.all()
-    if title_query == None:
-        title_query = ""
-    if desc_query == None:
-        desc_query = ""
-    if status_query == None:
-        status_query = ""
-    if priority_query == None:
-        priority_query = ""
-    tasks = Task.objects.filter(
-        user=user,
-        title__icontains=title_query,
-        desc__icontains=desc_query,
-        status__icontains=status_query,
-        priority__icontains=priority_query,
-    )
-    serializer = TaskSerializer(tasks, many=True)
-    return Response(serializer.data)
+    try:
+        user = request.user
+        title_query = request.query_params.get("title")
+        desc_query = request.query_params.get("desc")
+        status_query = request.query_params.get("status")
+        priority_query = request.query_params.get("priority")
+        # tasks = user.task_set.all()
+        if title_query == None:
+            title_query = ""
+        if desc_query == None:
+            desc_query = ""
+        if status_query == None:
+            status_query = ""
+        if priority_query == None:
+            priority_query = ""
+        tasks = Task.objects.filter(
+            Q(user=user),
+            Q(title__icontains=title_query) | Q(desc__icontains=desc_query)| Q(due_date__icontains=desc_query),
+            status__icontains=status_query,
+            priority__icontains=priority_query,
+        )
+        serializer = TaskSerializer(tasks, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception:
+        message = {"detail": "Some error occured!"}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["DELETE"])
@@ -87,7 +99,8 @@ def getTasks(request):
 def deleteTask(request, pk):
     task = Task.objects.filter(id=pk).first()
     task.delete()
-    return Response("Task Deleted Successfully.")
+    message = {"details" : "Task Deleted Successfully."}
+    return Response(message, status=status.HTTP_204_NO_CONTENT)
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
@@ -96,6 +109,7 @@ def getTask(request, pk):
     serializer = TaskSerializer(task, many=False)
     return Response(serializer.data)
 
+@extend_schema(request=TaskSerializer)
 @api_view(["PUT"])
 @permission_classes([IsAuthenticated])
 def editTask(request, pk):
@@ -111,6 +125,7 @@ def editTask(request, pk):
     return Response(serializer.data)
 
 
+@extend_schema(request=TaskSerializer)
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def createTask(request):
@@ -124,7 +139,7 @@ def createTask(request):
         status="PENDING",
     )
     serializer = TaskSerializer(task, many=False)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['PUT'])

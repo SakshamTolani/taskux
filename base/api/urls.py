@@ -5,7 +5,6 @@ from rest_framework_simplejwt.views import (
 )
 from .views import MyTokenObtainPairView
 
-
 urlpatterns=[
     path('', views.getRoutes),
     path('register/', views.registerUser),
