@@ -6,7 +6,7 @@ from base.models import Task
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields=['title','desc','due_date','priority','status']
+        fields=['title','desc','due_date','priority','status','id']
 
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(read_only=True)
