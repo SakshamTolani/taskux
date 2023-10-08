@@ -8,15 +8,19 @@
 
 ### Task List Screen
 
-![Task List]([https://res.cloudinary.com/sakshamtolani/image/upload/v1696760103/ss1_p1vcgu.png])
+![Task List](https://res.cloudinary.com/sakshamtolani/image/upload/v1696760103/ss1_p1vcgu.png)
 
-Description of the task list screen.
+The Task List Screen is the primary interface where users can view their tasks and to-do items at a glance. It provides an organized list of all the tasks, allowing users to quickly assess their pending and completed tasks. Users can also filter tasks based on their priority or status, making it easier to focus on the most important and urgent tasks. This screen offers a clean and user-friendly layout that enhances task management efficiency.
+
+With this addition, users will be aware that they can filter tasks on the Task List Screen based on criteria such as priority or status, providing them with greater control and flexibility in managing their tasks.
 
 ### Create Task Screen
 
-![Create Task]([https://res.cloudinary.com/sakshamtolani/image/upload/v1696760102/ss2_hpeksz.png])
+![Create Task](https://res.cloudinary.com/sakshamtolani/image/upload/v1696760102/ss2_hpeksz.png)
 
-Description of the create task screen.
+The Create Task Screen is where users can add new tasks or to-do items to their list. It offers a simple and intuitive form that allows users to specify task details such as the task title, description, due date, and any other relevant information. This screen streamlines the process of adding tasks, ensuring that users can effortlessly create and manage their to-do list.
+
+These descriptions should help users understand the purpose and functionality of these screens in your Task Management Application. If you have any specific details or features you'd like to highlight about these screens, please feel free to provide additional information.
 
 ## Requirements
 
