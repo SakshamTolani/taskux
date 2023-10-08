@@ -8,13 +8,13 @@
 
 ### Task List Screen
 
-![Task List](path/to/screenshot1.png)
+![Task List]([path/to/screenshot1.png](https://res.cloudinary.com/sakshamtolani/image/upload/v1696760103/ss1_p1vcgu.png))
 
 Description of the task list screen.
 
 ### Create Task Screen
 
-![Create Task](path/to/screenshot2.png)
+![Create Task]([path/to/screenshot2.png](https://res.cloudinary.com/sakshamtolani/image/upload/v1696760102/ss2_hpeksz.png))
 
 Description of the create task screen.
 
