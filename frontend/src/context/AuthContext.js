@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
             },
         )
         let data = await response.json();
-        if (response.status === 200) {
+        if (response.status === 201) {
             toast({
                 title: 'Registered Successfully!',
                 description: `Registration with ${data.username} successful. Please login`,
@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }) => {
                 duration: 9000,
                 isClosable: true,
               })
+            loginUser(e,data.username,rpassword)
             navigate("/")
         }
         else {
@@ -118,7 +119,7 @@ export const AuthProvider = ({ children }) => {
             },
         )
         let data = await response.json();
-        if (response.status === 200) {
+        if (response.status === 201) {
             navigate(`/edit/${data.id}`)
         }
         else {

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {
+    Avatar,
     Badge,
     Box,
     Button,
@@ -11,6 +12,7 @@ import {
     Flex,
     Heading,
     IconButton,
+    Image,
     Input,
     InputGroup,
     InputLeftElement,
@@ -114,11 +116,11 @@ const Tables = () => {
                 'Authorization': "Bearer " + String(authTokens.access)
             }
         })
-        let data = await response.json();
-        if (response.status === 200) {
+        console.log(response);
+        if (response.status === 204) {
             toast({
                 title: 'Deletion Successful',
-                description: data,
+                description: response.statusText,
                 status: 'success',
                 duration: 9000,
                 isClosable: true,
@@ -127,12 +129,21 @@ const Tables = () => {
         } else if (response.statusText === 'Unauthorized') {
             logoutUser();
         }
+        else {
+            toast({
+                title: 'Some Error Occured',
+                description: response.statusText,
+                status: 'error',
+                duration: 9000,
+                isClosable: true,
+            })
+        }
     }
 
     return (
         <Box m={2}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'} m={4}>
-                <Heading lineHeight={1.1} fontWeight={600} fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }} mb={4}>Tasks List</Heading>
+                <Image name='Taskux Logo' h={{base:50,lg:20}} src='https://res.cloudinary.com/sakshamtolani/image/upload/v1693336313/logo2_ikgsvn.png' />
                 <Box
                     as="a"
                     px={2}
@@ -144,7 +155,7 @@ const Tables = () => {
                         cursor: "pointer"
                     }}
                 >
-                    <Button onClick={onOpen} size={{base:"sm", lg:"md"}}><SearchIcon m={1} /></Button>
+                    <Button onClick={onOpen} size={{ base: "sm", lg: "md" }}><SearchIcon m={1} /></Button>
                     <Drawer placement={"top"} onClose={onClose} isOpen={isOpen}>
                         <DrawerOverlay />
                         <DrawerContent>
@@ -167,7 +178,7 @@ const Tables = () => {
                 </Box>
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                     <Menu closeOnSelect={false}>
-                        <MenuButton as={Button} colorScheme='blue' mr={{ base: 1 }} size={{base:"sm", lg:"md"}}>
+                        <MenuButton as={Button} colorScheme='blue' mr={{ base: 1 }} size={{ base: "sm", lg: "md" }}>
                             <RiFilter3Line fontSize={"20px"} />
                         </MenuButton>
                         <MenuList minWidth='240px'>
@@ -184,12 +195,12 @@ const Tables = () => {
                             </MenuOptionGroup>
                         </MenuList>
                     </Menu>
-                    <Button leftIcon={<AddIcon />} colorScheme='blue' variant='solid' onClick={(e) => addTask(e)} size={{base:"sm", lg:"md"}}>
+                    <Button leftIcon={<AddIcon />} colorScheme='blue' variant='solid' onClick={(e) => addTask(e)} size={{ base: "sm", lg: "md" }}>
                         Add Task
                     </Button>
                 </Flex>
             </Flex>
-            <TableContainer>
+            <TableContainer m={{base:1,lg:5}}>
                 <Table variant='simple'>
                     <Thead visibility={!tasks.length && "hidden"}>
                         <Tr>
